@@ -31,6 +31,26 @@
 | 파일 수정이 한 번 실패함 | 줄바꿈 방식(LF/CRLF) 차이로 찾는 글자가 안 맞음 | 한 줄 단위로 위치를 확인한 뒤 다시 수정 |
 | `python`이 실행되지 않음 | 윈도우의 가짜 python 바로가기 | Node.js로 테스트 서버를 만들어 사용 |
 
+**업로드과정(내용추가)**
+1. GitHub에서 빈 저장소를 만들어 주세요. (AI가 만들수 없음)
+2. github.com에 로그인한 뒤 오른쪽 위 + → New repository를 누르세요.
+3. 이름은 root-word-game, 공개 설정은 Public으로 하세요.
+4. README나 .gitignore 추가 옵션은 모두 체크하지 마세요. 빈 저장소여야 합니다.
+5. Create repository를 누르세요.
+
+6. 이후 GitHub 아이디를 알려주고, AI가 커밋하고 main 브랜치로 업로드(Push) 처음에는 GitHub 로그인 창이 뜰 수 있음
+7.  Settings → Pages에서 main 브랜치를 선택하는 방법을 안내해 드립니다. 이 설정은 GitHub 웹에서 직접 해야함.
+8.  1~2분 뒤 링크가 열리는지 확인하고, 카톡으로 보낼 안내 문구를 만들어 줌
+9.  업로드가 끝났습니다. 파일이 skyou-sp/root-word-game의 main 브랜치에 올라갔습니다. 이제 링크가 열리도록 Pages를 켜야 합니다.
+
+GitHub Pages 켜기 (웹에서 직접 해야함)
+1. https://github.com/skyou-sp/root-word-game 로 가서 위쪽 Settings 탭을 누르세요.
+2. 왼쪽 메뉴에서 Pages를 누르세요.
+3. Build and deployment의 Source를 Deploy from a branch로 두세요.
+4. Branch를 main, 폴더를 / (root)로 고르고 Save를 누르세요.
+5. 1~2분 기다리면 Pages 화면 위쪽에 "Your site is live at …" 주소가 나옵니다.
+6. 이후 앱주소를 복사한 후 열어서 앱이 뜨는지 확인.
+
 ## 3. 다음에 비슷한 앱을 만들 때 체크리스트
 
 **시작 전**
