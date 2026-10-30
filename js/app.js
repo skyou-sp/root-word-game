@@ -84,6 +84,7 @@ document.getElementById("quitBtn").onclick = quitBattle;
 document.getElementById("speakBtn").onclick = () => { if (battle) speak(battle.queue[battle.index].w); };
 document.getElementById("muteBtn").onclick = () => { save.mute = !save.mute; writeSave(save); renderMute(); if (save.mute) stopSpeech(); };
 renderMute();
+showSpeechNotice();
 document.getElementById("resetBtn").onclick = () => {
   if (confirm("모든 기록이 사라져요. 정말 초기화할까요?")) { save = defaultSave(); writeSave(save); show("home"); }
 };
