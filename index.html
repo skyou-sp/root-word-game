@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>어근 디펜스</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="topbar">
+    <div id="who"><span id="avatar">🥚</span> <b>Lv.<span id="level">1</span></b></div>
+    <div class="xpwrap"><div id="xpbar"></div></div>
+    <button id="muteBtn" title="자동 읽기 켜기/끄기">🔊</button>
+    <div id="coins">🪙 <span id="coinCount">0</span></div>
+  </header>
+
+  <main>
+    <!-- 홈 -->
+    <section id="home" class="screen">
+      <h1>어근 디펜스 🏰</h1>
+      <p class="sub">어근을 알면 모르는 단어도 뜻이 보여요!</p>
+      <div class="card" id="dailyCard"></div>
+      <button class="big" data-go="battle">⚔️ 전투 시작 (10문제)</button>
+      <button class="big alt" data-go="learn">📖 어근 학습</button>
+      <button class="big alt" data-go="stats">📈 성장 기록</button>
+    </section>
+
+    <!-- 학습: 어근 목록 -->
+    <section id="learn" class="screen hidden">
+      <button class="back" data-go="home">← 홈</button>
+      <h2>어근 학습</h2>
+      <div id="rootList"></div>
+    </section>
+
+    <!-- 학습: 어근 카드 -->
+    <section id="rootCard" class="screen hidden">
+      <button class="back" data-go="learn">← 목록</button>
+      <div id="rootDetail"></div>
+    </section>
+
+    <!-- 전투 -->
+    <section id="battle" class="screen hidden">
+      <div class="hud">
+        <div>🏰 <span id="hearts"></span></div>
+        <div><span id="qNum">1</span> / <span id="qTotal">10</span></div>
+        <button class="small" id="quitBtn">🏠 그만하기</button>
+      </div>
+      <div id="field">
+        <div id="enemy">👾</div>
+        <div id="castle">🏰</div>
+      </div>
+      <div id="question"></div>
+      <div style="text-align:center"><button class="small" id="speakBtn">🔊 다시 듣기</button></div>
+      <div id="hint"></div>
+      <div id="choices"></div>
+      <div id="feedback" class="hidden"></div>
+      <button id="nextBtn" class="big hidden">다음 ▶</button>
+    </section>
+
+    <!-- 결과 -->
+    <section id="result" class="screen hidden">
+      <h2 id="resultTitle"></h2>
+      <div class="card" id="resultBody"></div>
+      <button class="big" data-go="battle">⚔️ 다시 도전</button>
+      <button class="big alt" data-go="home">🏠 홈</button>
+    </section>
+
+    <!-- 성장 기록 -->
+    <section id="stats" class="screen hidden">
+      <button class="back" data-go="home">← 홈</button>
+      <h2>성장 기록</h2>
+      <div class="card" id="statsBody"></div>
+      <h3>취약 단어 💪</h3>
+      <div id="weakList" class="card"></div>
+      <button class="small danger" id="resetBtn">기록 초기화</button>
+    </section>
+  </main>
+
+  <script src="data/words.js"></script>
+  <script src="data/words2.js"></script>
+  <script src="data/trans.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/srs.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
