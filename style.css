@@ -37,6 +37,8 @@ button.danger { color: var(--bad); margin-top: 16px; }
 #choices button.right { background: var(--good); color: #fff; }
 #choices button.wrong { background: var(--bad); color: #fff; }
 #feedback { padding: 12px; border-radius: 12px; background: #fff7e6; margin-top: 8px; line-height: 1.5; }
+#speechNotice { padding: 10px 14px; background: #fff3cd; color: #5c4400; font-size: 14px; text-align: center; line-height: 1.6; }
+#speechNotice a { color: var(--main); font-weight: 700; }
 #muteBtn { background: none; font-size: 20px; color: #fff; padding: 0 4px; }
 .spk { background: #ece8ff; border-radius: 50%; width: 32px; height: 32px; margin-left: 6px; vertical-align: middle; }
 .hud { align-items: center; gap: 8px; }
