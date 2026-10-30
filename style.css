@@ -37,6 +37,8 @@ button.danger { color: var(--bad); margin-top: 16px; }
 #choices button.right { background: var(--good); color: #fff; }
 #choices button.wrong { background: var(--bad); color: #fff; }
 #feedback { padding: 12px; border-radius: 12px; background: #fff7e6; margin-top: 8px; line-height: 1.5; }
+#installCard { line-height: 1.6; font-size: 15px; background: #ece8ff; }
+#installCard button { margin-top: 6px; padding: 10px 14px; border-radius: 10px; background: var(--main); color: #fff; font-weight: 700; }
 #speechNotice { padding: 10px 14px; background: #fff3cd; color: #5c4400; font-size: 14px; text-align: center; line-height: 1.6; }
 #speechNotice a { color: var(--main); font-weight: 700; }
 #muteBtn { background: none; font-size: 20px; color: #fff; padding: 0 4px; }

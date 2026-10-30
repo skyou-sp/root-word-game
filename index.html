@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>어근 디펜스</title>
+  <meta name="theme-color" content="#6c4cf1">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,6 +26,7 @@
       <h1>어근 디펜스 🏰</h1>
       <p class="sub">어근을 알면 모르는 단어도 뜻이 보여요!</p>
       <div class="card" id="dailyCard"></div>
+      <div class="card hidden" id="installCard"></div>
       <button class="big" data-go="battle">⚔️ 전투 시작 (10문제)</button>
       <button class="big alt" data-go="learn">📖 어근 학습</button>
       <button class="big alt" data-go="stats">📈 성장 기록</button>
@@ -86,5 +91,6 @@
   <script src="js/srs.js"></script>
   <script src="js/game.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/install.js"></script>
 </body>
 </html>
