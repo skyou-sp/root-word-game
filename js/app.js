@@ -24,7 +24,11 @@ function renderTopbar() {
   document.getElementById("coinCount").textContent = save.coins;
 }
 
-function learnedCount() { return Object.values(save.words).filter(r => r.right > 0).length; }
+// 지금 데이터에 있는 단어만 센다 (검수로 빠진 단어의 옛 기록은 제외)
+function learnedCount() {
+  const now = new Set(allWords().map(w => w.w));
+  return Object.entries(save.words).filter(([w, r]) => now.has(w) && r.right > 0).length;
+}
 
 function renderHome() {
   const done = save.todayDate === todayStr() ? save.todayCount : 0;
@@ -67,10 +71,11 @@ function renderStats() {
     (save.bestOx ? `<br>⭕ ○× 퀴즈 최고 ${save.bestOx}점` : "") +
     (save.bestBasket ? `<br>🧺 어근 분류 달리기 최고 ${save.bestBasket}개` : "") +
     (save.bestHunt ? `<br>🎯 어근 단어 사냥 완벽 ${save.bestHunt}라운드` : "");
-  const weak = Object.entries(save.words).filter(([, r]) => r.wrong > 0 && !r.overcome);
-  const overcame = Object.values(save.words).filter(r => r.overcome).length;
   const lookup = {};
   allWords().forEach(w => lookup[w.w] = w);
+  // 검수로 빠진 단어의 옛 기록은 목록과 개수에서 뺀다
+  const weak = Object.entries(save.words).filter(([w, r]) => lookup[w] && r.wrong > 0 && !r.overcome);
+  const overcame = Object.entries(save.words).filter(([w, r]) => lookup[w] && r.overcome).length;
   document.getElementById("weakList").innerHTML = (weak.length
     ? weak.sort((a, b) => b[1].wrong - a[1].wrong).map(([w, r]) => `<div class="wordRow"><b>${w}</b> ${lookup[w] ? lookup[w].ko : ""} <small>(오답 ${r.wrong}회)</small></div>`).join("")
     : "취약 단어가 없어요 👍") + `<hr>🏅 극복한 단어: ${overcame}개`;
@@ -97,6 +102,21 @@ document.getElementById("huntCheck").onclick = checkHunt;
 document.getElementById("huntNext").onclick = nextHunt;
 
 // 미니게임 공통 결과 화면. again은 "다시 하기"를 눌렀을 때 실행할 함수.
+// 미니게임 정답·오답 직후에 보여 주는 단어 설명 (뜻, 어근, 예문, 번역)
+function miniWordInfo(w) {
+  return `<b>${w.w}</b> = ${w.ko}<br>어근 <span class="chip">${w.root}</span> (${w.rootMeaning})` +
+    `<br><small>${w.ex}<br>${TRANS[w.w] || ""}</small>`;
+}
+
+// 피드백 아래에 "다음 ▶" 버튼을 붙인다. 누를 때까지 자동으로 넘어가지 않는다.
+function addMiniNext(fb, label, onClick) {
+  const b = document.createElement("button");
+  b.className = "big";
+  b.textContent = label;
+  b.onclick = () => { b.disabled = true; onClick(); };
+  fb.appendChild(b);
+}
+
 function showMiniResult(title, html, again) {
   document.getElementById("miniResultTitle").textContent = title;
   document.getElementById("miniResultBody").innerHTML = html;

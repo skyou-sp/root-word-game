@@ -6,18 +6,21 @@ let ox = null;
 
 function oxMultiplier(combo) { return Math.min(4, 1 + Math.floor(combo / 3)); } // 3연속마다 +1배, 최대 4배
 
-function startOx() {
+function startOx() { // koOverlap(뜻 겹침 검사)은 srs.js에 있다
   touchStreak(save);
   const all = allWords();
   const queue = pickQuestions(save, OX_SIZE).map(w => {
     const isTrue = Math.random() < 0.5;
-    let shown = w.ko;
+    let shown = w.ko, pickedOwner = null;
     if (!isTrue) {
-      const same = all.filter(x => x.root === w.root && x.ko !== w.ko);
-      const pool = same.length && Math.random() < 0.6 ? same : all.filter(x => x.ko !== w.ko);
-      shown = pool[Math.floor(Math.random() * pool.length)].ko;
+      const valid = all.filter(x => x.w !== w.w && !koOverlap(x.ko, w.ko)); // 정답과 뜻이 겹치는 후보는 제외
+      const same = valid.filter(x => x.root === w.root);
+      const pool = same.length && Math.random() < 0.6 ? same : valid;
+      pickedOwner = pool[Math.floor(Math.random() * pool.length)];
+      shown = pickedOwner.ko;
     }
-    return { word: w, shown, isTrue };
+    const owner = isTrue ? null : pickedOwner;
+    return { word: w, shown, isTrue, owner };
   });
   ox = { queue, index: 0, right: 0, combo: 0, bestCombo: 0, score: 0, missed: [], locked: false, token: Date.now() };
   show("ox");
@@ -52,12 +55,14 @@ function answerOx(sayTrue) {
     ox.right += 1;
     ox.score += OX_POINT * mult;
     save.coins += OX_COIN;
-    fb.innerHTML = `✅ 정답! +${OX_POINT * mult}점` + (mult > 1 ? ` (x${mult})` : "") + `<br><b>${q.word.w}</b> = ${q.word.ko}`;
+    fb.innerHTML = `✅ 정답! +${OX_POINT * mult}점` + (mult > 1 ? ` (x${mult})` : "") +
+      (q.isTrue ? ` (맞는 뜻 ⭕)` : ` ("${q.shown}"은 <b>${q.owner.w}</b>의 뜻 ❌)`) + `<br>` + miniWordInfo(q.word);
     document.getElementById("oxCard").className = "ok";
   } else {
     ox.combo = 0;
     ox.missed.push(q.word);
-    fb.innerHTML = `❌ 아쉬워요!<br><b>${q.word.w}</b> = ${q.word.ko} <span class="chip">${q.word.root}</span>${q.word.rootMeaning}`;
+    fb.innerHTML = `❌ 아쉬워요!` + (q.isTrue ? ` (맞는 뜻이었어요 ⭕)` : ` ("${q.shown}"은 <b>${q.owner.w}</b>의 뜻이에요 ❌)`) +
+      `<br>` + miniWordInfo(q.word);
     document.getElementById("oxCard").className = "no";
   }
   document.querySelectorAll("#oxButtons button").forEach(b => {
@@ -69,10 +74,11 @@ function answerOx(sayTrue) {
   renderTopbar();
   const token = ox.token;
   ox.index += 1;
-  setTimeout(() => {
+  const last = ox.index >= ox.queue.length;
+  addMiniNext(fb, last ? "결과 보기 ▶" : "다음 ▶", () => {
     if (!ox || ox.token !== token) return;
-    if (ox.index >= ox.queue.length) finishOx(); else renderOx();
-  }, ok ? 800 : 1800);
+    if (last) finishOx(); else renderOx();
+  });
 }
 
 function finishOx() {

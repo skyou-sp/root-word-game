@@ -60,10 +60,10 @@ button.big small { font-weight: 400; font-size: 13px; opacity: .8; }
 #oxButtons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
 .oxbtn { padding: 22px 0; font-size: 44px; border-radius: 16px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.12); }
 .oxbtn.right { background: var(--good); } .oxbtn.wrong { background: var(--bad); }
-#oxFeedback { min-height: 48px; text-align: center; line-height: 1.5; }
+#oxFeedback { min-height: 120px; text-align: center; line-height: 1.5; }
 #basketField { position: relative; height: 210px; margin: 10px 0; background: linear-gradient(#cfe8ff, #fff4d6); border-radius: 14px; overflow: hidden; border-bottom: 6px solid #c9a56b; }
 #basketWord { position: absolute; left: 50%; transform: translateX(-50%); top: 0; padding: 6px 16px; font-size: 30px; font-weight: 800; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
-#basketFeedback { min-height: 44px; text-align: center; line-height: 1.5; }
+#basketFeedback { min-height: 120px; text-align: center; line-height: 1.5; }
 #basketChoices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .bbtn { padding: 14px 4px; border-radius: 12px; background: #fff; font-size: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
 .bbtn b { color: var(--main); } .bbtn small { color: var(--sub); }

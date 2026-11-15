@@ -20,11 +20,10 @@ function renderHunt() {
   hunt.selected = [];
   hunt.checked = false;
   const good = shuffled(r.words).slice(0, HUNT_GOOD).map(x => ({ w: x.w, ko: x.ko, good: true }));
-  const rootLow = r.root.toLowerCase();
   const pool = shuffled(ROOTS.filter(x => x.root !== r.root && x.meaning !== r.meaning));
   const bad = [];
-  for (const x of pool) { // 서로 다른 어근에서 하나씩, 어근 철자가 들어간 단어는 제외
-    const c = shuffled(x.words).find(y => !y.w.toLowerCase().includes(rootLow));
+  for (const x of pool) { // 서로 다른 어근에서 하나씩, 어근 철자(예: com / con의 com, con)가 들어간 단어는 제외
+    const c = shuffled(x.words).find(y => !wordHasRoot(y.w, r.root));
     if (c) bad.push({ w: c.w, ko: c.ko, good: false });
     if (bad.length === HUNT_BAD) break;
   }

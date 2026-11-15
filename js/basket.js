@@ -27,7 +27,8 @@ function nextBasket() {
   if (basket.lives <= 0 || basket.index >= basket.queue.length) return finishBasket();
   const w = basket.queue[basket.index];
   const correct = ROOTS.find(r => r.root === w.root);
-  const others = shuffled(ROOTS.filter(r => r.root !== correct.root && r.meaning !== correct.meaning)).slice(0, 2);
+  // 오답 바구니: 뜻이 같은 어근, 단어 철자에 들어 있는 어근(예: transfusion의 trans)은 빼서 정답이 둘이 되지 않게 한다
+  const others = shuffled(ROOTS.filter(r => r.root !== correct.root && r.meaning !== correct.meaning && !wordHasRoot(w.w, r.root))).slice(0, 2);
   document.getElementById("basketNum").textContent = basket.index + 1;
   document.getElementById("basketTotal").textContent = basket.queue.length;
   renderBasketHearts();
@@ -72,18 +73,19 @@ function resolveBasket(choice) {
   if (ok) {
     basket.right += 1;
     save.coins += BASKET_COIN;
-    fb.innerHTML = `✅ <b>${w.w}</b> (${w.ko}) → ${w.root}`;
+    fb.innerHTML = `✅ 정답!<br>` + miniWordInfo(w);
   } else {
     basket.lives -= 1;
     basket.missed.push(w);
-    fb.innerHTML = `${choice === null ? "⏰ 시간 초과!" : "❌ 아쉬워요!"} <b>${w.w}</b> (${w.ko}) → <b>${w.root}</b> (${w.rootMeaning})`;
+    fb.innerHTML = `${choice === null ? "⏰ 시간 초과!" : "❌ 아쉬워요!"}<br>` + miniWordInfo(w);
   }
   writeSave(save);
   renderTopbar();
   renderBasketHearts();
   const token = basket.token;
   basket.index += 1;
-  setTimeout(() => { if (basket && basket.token === token) nextBasket(); }, ok ? 700 : 1600);
+  const last = basket.lives <= 0 || basket.index >= basket.queue.length;
+  addMiniNext(fb, last ? "결과 보기 ▶" : "다음 ▶", () => { if (basket && basket.token === token) nextBasket(); });
 }
 
 function finishBasket() {

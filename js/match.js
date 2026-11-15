@@ -8,8 +8,8 @@ function startMatch() {
   touchStreak(save);
   const words = pickQuestions(save, MATCH_PAIRS * 3);
   const used = new Set(), pick = [];
-  for (const w of words) { // 뜻이 같은 단어가 섞이지 않게 한다
-    if (used.has(w.ko)) continue;
+  for (const w of words) { // 뜻이 같거나 겹치는 단어(예: tact 재치 ↔ tactful 재치 있는)가 섞이지 않게 한다
+    if ([...used].some(k => koOverlap(k, w.ko))) continue;
     used.add(w.ko);
     pick.push(w);
     if (pick.length === MATCH_PAIRS) break;
