@@ -1,10 +1,10 @@
 // 오프라인 저장: 한 번 열어 본 뒤에는 인터넷 없이도 실행된다.
 // 파일을 고쳐서 다시 올릴 때는 아래 CACHE 이름의 숫자를 올려 주세요.
-const CACHE = "root-defense-v2";
+const CACHE = "root-defense-v3";
 const FILES = [
   "./", "index.html", "style.css", "manifest.webmanifest",
   "data/words.js", "data/words2.js", "data/words3.js", "data/trans.js",
-  "js/speech.js", "js/storage.js", "js/srs.js", "js/game.js", "js/app.js", "js/install.js",
+  "js/speech.js", "js/storage.js", "js/srs.js", "js/game.js", "js/match.js", "js/ox.js", "js/basket.js","js/hunt.js","js/app.js", "js/install.js",
   "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"
 ];
 

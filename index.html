@@ -28,6 +28,7 @@
       <div class="card" id="dailyCard"></div>
       <div class="card hidden" id="installCard"></div>
       <button class="big" data-go="battle">⚔️ 전투 시작 (10문제)</button>
+      <button class="big alt" data-go="minigames">🎮 미니게임</button>
       <button class="big alt" data-go="learn">📖 어근 학습</button>
       <button class="big alt" data-go="stats">📈 성장 기록</button>
     </section>
@@ -72,6 +73,89 @@
       <button class="big alt" data-go="home">🏠 홈</button>
     </section>
 
+    <!-- 미니게임 메뉴 -->
+    <section id="minigames" class="screen hidden">
+      <button class="back" data-go="home">← 홈</button>
+      <h2>미니게임 🎮</h2>
+      <button class="big alt" data-go="match">🃏 짝 맞추기<br><small>단어와 뜻을 짝지어요</small></button>
+      <button class="big alt" data-go="ox">⭕ ○× 퀴즈<br><small>맞으면 ○, 틀리면 ×! 연속으로 맞히면 점수가 쑥쑥</small></button>
+      <button class="big alt" data-go="basket">🧺 어근 분류 달리기<br><small>떨어지는 단어를 맞는 어근 바구니로!</small></button>
+      <button class="big alt" data-go="hunt">🎯 어근 단어 사냥<br><small>어근으로 만든 단어만 골라요</small></button>
+    </section>
+
+    <!-- 미니게임: ○× 퀴즈 -->
+    <section id="ox" class="screen hidden">
+      <div class="hud">
+        <div><span id="oxNum">1</span> / <span id="oxTotal">15</span></div>
+        <div>⭐ <span id="oxScore">0</span>점</div>
+        <button class="small" id="oxQuitBtn">🏠 그만하기</button>
+      </div>
+      <div id="oxCombo"></div>
+      <div id="oxCard">
+        <div id="oxWord"></div>
+        <div id="oxEq">=</div>
+        <div id="oxMeaning"></div>
+      </div>
+      <div id="oxButtons">
+        <button class="oxbtn" data-ox="o">⭕</button>
+        <button class="oxbtn" data-ox="x">❌</button>
+      </div>
+      <div id="oxFeedback"></div>
+    </section>
+
+    <!-- 미니게임: 어근 분류 달리기 -->
+    <section id="basket" class="screen hidden">
+      <div class="hud">
+        <div><span id="basketLives"></span></div>
+        <div><span id="basketNum">1</span> / <span id="basketTotal">10</span></div>
+        <button class="small" id="basketQuitBtn">🏠 그만하기</button>
+      </div>
+      <div id="basketField"><div id="basketWord"></div></div>
+      <div id="basketFeedback"></div>
+      <div id="basketChoices"></div>
+    </section>
+
+    <!-- 미니게임: 어근 단어 사냥 -->
+    <section id="hunt" class="screen hidden">
+      <div class="hud">
+        <div>🎯 <span id="huntRound">1</span> / <span id="huntTotal">3</span></div>
+        <button class="small" id="huntQuitBtn">🏠 그만하기</button>
+      </div>
+      <h3 id="huntRoot"></h3>
+      <p class="sub">이 어근으로 만든 단어 4개를 고르세요.</p>
+      <div id="huntBoard"></div>
+      <div id="huntFeedback"></div>
+      <button id="huntCheck" class="big" disabled>확인</button>
+      <button id="huntNext" class="big hidden">다음 ▶</button>
+    </section>
+
+    <!-- 미니게임 공통 결과 -->
+    <section id="miniResult" class="screen hidden">
+      <h2 id="miniResultTitle"></h2>
+      <div class="card" id="miniResultBody"></div>
+      <button class="big" id="miniAgain">🔁 다시 하기</button>
+      <button class="big alt" data-go="minigames">🎮 미니게임 메뉴</button>
+      <button class="big alt" data-go="home">🏠 홈</button>
+    </section>
+
+    <!-- 미니게임: 짝 맞추기 -->
+    <section id="match" class="screen hidden">
+      <div class="hud">
+        <div>🃏 <span id="matchFound">0</span> / <span id="matchTotal">6</span></div>
+        <div>👆 <span id="matchMoves">0</span>번</div>
+        <button class="small" id="matchQuitBtn">🏠 그만하기</button>
+      </div>
+      <p class="sub">영어 단어와 뜻을 짝지어 보세요!</p>
+      <div id="matchBoard"></div>
+    </section>
+
+    <section id="matchResult" class="screen hidden">
+      <h2>🎉 짝 맞추기 완료!</h2>
+      <div class="card" id="matchResultBody"></div>
+      <button class="big" data-go="match">🃏 다시 하기</button>
+      <button class="big alt" data-go="home">🏠 홈</button>
+    </section>
+
     <!-- 성장 기록 -->
     <section id="stats" class="screen hidden">
       <button class="back" data-go="home">← 홈</button>
@@ -91,6 +175,10 @@
   <script src="js/storage.js"></script>
   <script src="js/srs.js"></script>
   <script src="js/game.js"></script>
+  <script src="js/match.js"></script>
+  <script src="js/ox.js"></script>
+  <script src="js/basket.js"></script>
+  <script src="js/hunt.js"></script>
   <script src="js/app.js"></script>
   <script src="js/install.js"></script>
 </body>

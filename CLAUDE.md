@@ -16,6 +16,13 @@
 - `js/storage.js` 저장·레벨·연속 학습 / `js/srs.js` 문제 출제(틀린 단어 우선)
 - `js/game.js` 전투 / `js/app.js` 화면 전환·학습·기록
 - `js/speech.js` 음성 / `js/install.js` 설치 안내
+- 미니게임 (홈 → 🎮 미니게임 메뉴). 전투 기록(오답 수)은 건드리지 않고 코인만 준다
+  - `js/match.js` 짝 맞추기 (단어↔뜻 카드 6쌍)
+  - `js/ox.js` ○× 퀴즈 (15문제, 연속 정답 배율 최대 x4)
+  - `js/basket.js` 어근 분류 달리기 (떨어지는 단어를 어근 바구니로, 하트 3개). `shuffled()`도 여기 있음
+  - `js/hunt.js` 어근 단어 사냥 (어근 단어 4개 고르기, 3라운드)
+  - 결과 화면은 `app.js`의 `showMiniResult()`를 공유 (짝 맞추기만 자체 결과 화면)
+  - 최고 기록은 `save.bestMatch / bestOx / bestBasket / bestHunt`에 저장
 - `sw.js`, `manifest.webmanifest`, `icons/` 설치(PWA)용
 - `docs/BUILD-LOG.md` 만든 과정과 체크리스트
 
@@ -38,8 +45,9 @@
 
 ## 배포 방법 (GitHub Pages)
 1. 수정 후 문법 확인: `node --check js/app.js` (바꾼 파일마다)
-2. `git add -A`
+2. `git add 바꾼파일들` (아래 7번 참고)
 3. `git commit -m "무엇을 바꿨는지"`
 4. `git push origin main`
 5. 1~2분 뒤 위 주소에서 확인 (처음 한 번만 Settings → Pages → Branch `main` / root 설정)
-6. 새 파일을 만들었다면 `sw.js`의 `FILES` 목록에도 추가
+6. 새 파일을 만들었다면 `sw.js`의 `FILES` 목록에도 추가 (`index.html`의 script 태그도 잊지 않기)
+7. `git add`는 `-A` 대신 필요한 파일만 지정한다. 대화 기록 `.txt` 같은 작업용 파일은 올리지 않는다

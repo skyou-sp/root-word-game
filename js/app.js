@@ -62,7 +62,11 @@ function renderStats() {
   document.getElementById("statsBody").innerHTML =
     `${avatarFor(li.level)} 레벨 <b>${li.level}</b> (다음 레벨까지 ${li.need - li.into} XP)<br>` +
     `🔥 연속 학습 ${save.streak}일<br>📚 익힌 단어 ${learnedCount()} / ${allWords().length}<br>` +
-    `⚔️ 전투 ${save.battles}회 · 🏆 최고 점수 ${save.bestScore}점`;
+    `⚔️ 전투 ${save.battles}회 · 🏆 최고 점수 ${save.bestScore}점` +
+    (save.bestMatch ? `<br>🃏 짝 맞추기 최소 ${save.bestMatch}번` : "") +
+    (save.bestOx ? `<br>⭕ ○× 퀴즈 최고 ${save.bestOx}점` : "") +
+    (save.bestBasket ? `<br>🧺 어근 분류 달리기 최고 ${save.bestBasket}개` : "") +
+    (save.bestHunt ? `<br>🎯 어근 단어 사냥 완벽 ${save.bestHunt}라운드` : "");
   const weak = Object.entries(save.words).filter(([, r]) => r.wrong > 0 && !r.overcome);
   const overcame = Object.values(save.words).filter(r => r.overcome).length;
   const lookup = {};
@@ -77,8 +81,28 @@ document.addEventListener("click", e => {
   if (sp) { speak(sp.dataset.speak); return; }
   const go = e.target.closest("[data-go]");
   if (!go) return;
-  if (go.dataset.go === "battle") startBattle(); else show(go.dataset.go);
+  if (go.dataset.go === "battle") startBattle();
+  else if (go.dataset.go === "match") startMatch();
+  else if (go.dataset.go === "ox") startOx();
+  else if (go.dataset.go === "basket") startBasket();
+  else if (go.dataset.go === "hunt") startHunt();
+  else show(go.dataset.go);
 });
+document.getElementById("matchQuitBtn").onclick = quitMatch;
+document.getElementById("basketQuitBtn").onclick = quitBasket;
+document.getElementById("oxQuitBtn").onclick = quitOx;
+document.querySelectorAll("#oxButtons button").forEach(b => b.onclick = () => answerOx(b.dataset.ox === "o"));
+document.getElementById("huntQuitBtn").onclick = quitHunt;
+document.getElementById("huntCheck").onclick = checkHunt;
+document.getElementById("huntNext").onclick = nextHunt;
+
+// 미니게임 공통 결과 화면. again은 "다시 하기"를 눌렀을 때 실행할 함수.
+function showMiniResult(title, html, again) {
+  document.getElementById("miniResultTitle").textContent = title;
+  document.getElementById("miniResultBody").innerHTML = html;
+  document.getElementById("miniAgain").onclick = again;
+  show("miniResult");
+}
 document.getElementById("nextBtn").onclick = nextQuestion;
 document.getElementById("quitBtn").onclick = quitBattle;
 document.getElementById("speakBtn").onclick = () => { if (battle) speak(battle.queue[battle.index].w); };
