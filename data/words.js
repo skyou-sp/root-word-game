@@ -24,13 +24,12 @@ const ROOTS = [
     { w: "important", ko: "중요한", ex: "It is important to drink water every day." },
     { w: "transportation", ko: "교통, 운송", ex: "Buses are the main transportation in my town." } ] },
   { root: "dict", meaning: "말하다", words: [
-    { w: "predict", ko: "예측하다", ex: "Can you predict the weather?" },
+    { w: "predict", ko: "예측하다", ex: "It is hard to predict the weather." },
     { w: "dictate", ko: "받아쓰게 하다, 명령하다", ex: "The teacher dictated a sentence." },
     { w: "contradict", ko: "반박하다", ex: "Don't contradict your parents." },
     { w: "dictionary", ko: "사전", ex: "Look it up in the dictionary." },
     { w: "verdict", ko: "판결", ex: "The jury gave its verdict." },
     { w: "addict", ko: "중독자", ex: "He is a game addict." },
-    { w: "edict", ko: "칙령", ex: "The king issued an edict." },
     { w: "dictator", ko: "독재자", ex: "The dictator ruled the country for many years." },
     { w: "prediction", ko: "예측, 예언", ex: "His prediction about the weather was right." },
     { w: "dictation", ko: "받아쓰기", ex: "We have a dictation test every Friday." } ] },
@@ -128,10 +127,8 @@ const ROOTS = [
     { w: "geothermal", ko: "지열의", ex: "Iceland uses geothermal energy." },
     { w: "geologist", ko: "지질학자", ex: "A geologist examined the rocks." },
     { w: "geocentric", ko: "지구 중심의", ex: "Old astronomers had a geocentric view." },
-    { w: "geopolitics", ko: "지정학", ex: "Geopolitics is about power and land." },
     { w: "geometric", ko: "기하학적인", ex: "The rug has a geometric pattern." },
     { w: "geographical", ko: "지리적인", ex: "Korea has a special geographical position." },
-    { w: "geophysics", ko: "지구 물리학", ex: "Geophysics helps us study earthquakes." },
     { w: "geographer", ko: "지리학자", ex: "The geographer made a map of the island." } ] },
   { root: "tele", meaning: "멀리", words: [
     { w: "television", ko: "텔레비전", ex: "He watches television." },
@@ -141,9 +138,7 @@ const ROOTS = [
     { w: "telecommunication", ko: "원거리 통신", ex: "Telecommunication connects the world." },
     { w: "telework", ko: "원격 근무", ex: "My mother does telework on Fridays." },
     { w: "telemarketing", ko: "전화 판매", ex: "I got a telemarketing call." },
-    { w: "telecast", ko: "텔레비전 방송, 방송하다", ex: "The final game was telecast live." },
-    { w: "teleconference", ko: "원격 회의", ex: "We held a teleconference with our partners abroad." },
-    { w: "telescopic", ko: "망원경의, 신축식의", ex: "He used a telescopic lens to take the photo." } ] },
+    { w: "teleconference", ko: "원격 회의", ex: "We held a teleconference with our partners abroad." } ] },
   { root: "micro", meaning: "작은", words: [
     { w: "microscope", ko: "현미경", ex: "Look at the cell under the microscope." },
     { w: "microwave", ko: "전자레인지", ex: "Heat the soup in the microwave." },
@@ -151,10 +146,8 @@ const ROOTS = [
     { w: "microchip", ko: "마이크로칩", ex: "A microchip is inside the phone." },
     { w: "microorganism", ko: "미생물체", ex: "A microorganism is too small to see." },
     { w: "microscopic", ko: "현미경으로 봐야 보이는", ex: "Bacteria are microscopic." },
-    { w: "micrometer", ko: "마이크로미터(측정기)", ex: "The engineer used a micrometer to measure the wire." },
     { w: "microbiology", ko: "미생물학", ex: "Microbiology is the study of tiny living things." },
-    { w: "microcosm", ko: "소우주, 축소판", ex: "The school is a microcosm of society." },
-    { w: "microfilm", ko: "마이크로필름", ex: "Old newspapers are kept on microfilm." } ] },
+    { w: "microcosm", ko: "소우주, 축소판", ex: "The school is a microcosm of society." } ] },
   { root: "mit / miss", meaning: "보내다", words: [
     { w: "submit", ko: "제출하다", ex: "Submit your homework by Friday." },
     { w: "permit", ko: "허락하다", ex: "Phones are not permitted here." },
@@ -311,9 +304,7 @@ const ROOTS = [
     { w: "tripod", ko: "삼각대", ex: "Set the camera on the tripod." },
     { w: "centipede", ko: "지네", ex: "A centipede has many legs." },
     { w: "podium", ko: "연단", ex: "The winner stood on the podium." },
-    { w: "quadruped", ko: "네발 동물", ex: "A horse is a quadruped." },
     { w: "impede", ko: "방해하다", ex: "Fog impeded our progress." },
     { w: "pedestal", ko: "받침대, 대좌", ex: "The statue stands on a high pedestal." },
-    { w: "biped", ko: "두 발 동물", ex: "Humans are bipeds because we walk on two legs." },
     { w: "expedition", ko: "탐험, 원정", ex: "The team went on an expedition to the North Pole." } ] }
 ];

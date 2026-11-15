@@ -1,6 +1,6 @@
 # 어근 디펜스 (root-word-game)
 
-영어 어근으로 중고등 수준 단어를 외우는 웹 게임. 어근 129개 / 단어 1,198개.
+영어 어근으로 중고등 수준 단어를 외우는 웹 게임. 어근 167개 / 단어 1,417개.
 주소: https://skyou-sp.github.io/root-word-game/ (GitHub Pages)
 
 ## 기술 스택
@@ -11,7 +11,7 @@
 
 ## 폴더 구조
 - `index.html` 화면 뼈대 / `style.css` 디자인
-- `data/words.js`, `words2.js`, `words3.js` 어근과 단어 (`ROOTS` 배열)
+- `data/words.js`, `words2.js`, `words3.js`, `words4.js` 어근과 단어 (`ROOTS` 배열)
 - `data/trans.js` 예문 한글 번역 (`TRANS`, 단어를 키로 사용)
 - `js/storage.js` 저장·레벨·연속 학습 / `js/srs.js` 문제 출제(틀린 단어 우선)
 - `js/game.js` 전투 / `js/app.js` 화면 전환·학습·기록
